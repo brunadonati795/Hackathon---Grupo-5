@@ -7,15 +7,7 @@
   padding: 24px;
 }
 
-.btn-voltar {
-  align-self: flex-start;
-  background: none;
-  border: none;
-  color: #1B245E; /* voltar/sair */
-  font-size: 0.95rem;
-  cursor: pointer;
-  text-decoration: underline;
-}
+/* botão voltar removido nesta tela por solicitação */
 
 .botoes-nivel {
   display: flex;

@@ -19,6 +19,11 @@
   height: auto;
 }
 
+.logo--hero {
+  width: 80%;
+  max-width: 320px;
+}
+
 .titulo {
   font-size: 2.5rem;
   font-weight: bold;
@@ -63,7 +68,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 40px 20px;
-  text-align: center;
+  text-align: left; /* textos alinhados à esquerda */
   font-family: 'Segoe UI', sans-serif;
   background-color: #ffffff;
 }
@@ -83,7 +88,7 @@
 .opcoes {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 10px;
   margin-bottom: 30px;
 }
@@ -91,6 +96,21 @@
 .opcoes label {
   font-size: 1rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  line-height: 1.3;
+}
+
+.opcoes input[type="checkbox"],
+.opcoes input[type="radio"] {
+  flex: 0 0 auto;
+}
+
+.opcoes label span {
+  flex: 1 1 auto;
+  word-break: break-word;
 }
 
 .botao-prosseguir {
@@ -155,6 +175,14 @@
   line-height: 1;
   margin-bottom: 10px;
   color: #2E447D;
+}
+
+/* imagens menores dentro dos cards de disciplinas */
+.icone-temp img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
 }
 
 /* QUIZZ NIVELAMENTO DISCIPLINAS */

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import brand from '../assets/image-removebg-preview.png';
 
 const PaginaInicial = () => {
   const navigate = useNavigate();
@@ -11,19 +12,11 @@ const PaginaInicial = () => {
   return (
     <div className="pagina-inicial">
       <div className="logo-area">
-        <img src="/logo.png" alt="Logo Metitulo"/>
+        <img src={brand} alt="Logo" className="logo logo--hero"/>
         <h1>MeU</h1>
         <p className="subtitulo">Meu Ensino Único</p>
       </div>
-
-      <div className="texto-intro">
-        <h2>Aprenda da sua forma, no seu tempo</h2>
-        <p>Responda às perguntas e personalize sua experiência!</p>
-      </div>
-
-      <button className="botao-perguntas" onClick={iniciarQuiz}>
-        PERGUNTAS
-      </button>
+      <button className="botao-perguntas" onClick={iniciarQuiz}>PERGUNTAS</button>
     </div>
   );
 };

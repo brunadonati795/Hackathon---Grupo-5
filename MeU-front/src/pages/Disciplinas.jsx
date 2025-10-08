@@ -2,16 +2,37 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import '../App.css';
 
+// imagens das disciplinas
+import imgGeo from '../assets/geo.png';
+import imgFisica from '../assets/fisica.png';
+import imgPortugues from '../assets/portugues.png';
+import imgMatematica from '../assets/mate.png';
+import imgHistoria from '../assets/hist.png';
+import imgFilosofia from '../assets/filo.png';
+import imgQuimica from '../assets/quimic.png';
+import imgBiologia from '../assets/bio.png';
+
 const disciplinas = [
-  { nome: 'Geografia', imagem: 'c1.png' },
-  { nome: 'Física', imagem: 'hashtag.png' },
-  { nome: 'Português', imagem: 'b3.png' },
-  { nome: 'Matemática', imagem: 'hashtag.png' },
-  { nome: 'História', imagem: 'hashtag.png' },
-  { nome: 'Filosofia', imagem: 'a2.png' },
-  { nome: 'Química', imagem: 'b3.png' },
-  { nome: 'Biologia', imagem: 'a1.png' },
+  { nome: 'Geografia' },
+  { nome: 'Física' },
+  { nome: 'Português' },
+  { nome: 'Matemática' },
+  { nome: 'História' },
+  { nome: 'Filosofia' },
+  { nome: 'Química' },
+  { nome: 'Biologia' },
 ];
+
+const imagensPorDisciplina = {
+  Geografia: imgGeo,
+  'Física': imgFisica,
+  'Português': imgPortugues,
+  'Matemática': imgMatematica,
+  'História': imgHistoria,
+  'Filosofia': imgFilosofia,
+  'Química': imgQuimica,
+  'Biologia': imgBiologia,
+};
 
 const SelecaoDisciplina = () => {
   const navigate = useNavigate();
@@ -40,7 +61,9 @@ const SelecaoDisciplina = () => {
             onClick={() => onCardClick(disciplina.nome)}
             onDoubleClick={() => onCardDoubleClick(disciplina.nome)}
           >
-            <div className="icone-temp" aria-hidden="true">📘</div>
+            <div className="icone-temp" aria-hidden="true">
+              <img src={imagensPorDisciplina[disciplina.nome]} alt={disciplina.nome} />
+            </div>
             <p>{disciplina.nome}</p>
           </div>
         ))}

@@ -49,7 +49,7 @@ const QuizEstiloAprendizagem = () => {
             checked={estilosSelecionados.includes('escrita-leitura')}
             onChange={() => alternarEstilo('escrita-leitura')}
           />
-          Escrita e leitura
+          <span>Escrita e leitura</span>
         </label>
         <label>
           <input
@@ -59,7 +59,7 @@ const QuizEstiloAprendizagem = () => {
             checked={estilosSelecionados.includes('audio-visual')}
             onChange={() => alternarEstilo('audio-visual')}
           />
-          Áudio-visual
+          <span>Áudio-visual</span>
         </label>
         <label>
           <input
@@ -69,7 +69,7 @@ const QuizEstiloAprendizagem = () => {
             checked={estilosSelecionados.includes('questoes')}
             onChange={() => alternarEstilo('questoes')}
           />
-          Fazer questões
+          <span>Fazer questões</span>
         </label>
         <label>
           <input
@@ -79,7 +79,7 @@ const QuizEstiloAprendizagem = () => {
             checked={estilosSelecionados.includes('explicando')}
             onChange={() => alternarEstilo('explicando')}
           />
-          Explicando para alguém
+          <span>Explicando para alguém</span>
         </label>
         <label>
           <input
@@ -89,7 +89,7 @@ const QuizEstiloAprendizagem = () => {
             checked={estilosSelecionados.includes('visual')}
             onChange={() => alternarEstilo('visual')}
           />
-          Visual (infográficos, mapas mentais)
+          <span>Visual (infográficos, mapas mentais)</span>
         </label>
         <label>
           <input
@@ -99,7 +99,7 @@ const QuizEstiloAprendizagem = () => {
             checked={estilosSelecionados.includes('pratica')}
             onChange={() => alternarEstilo('pratica')}
           />
-          Fazer na prática
+          <span>Fazer na prática</span>
         </label>
       </div>
 
@@ -129,12 +129,14 @@ const QuizEstiloAprendizagem = () => {
         {temHabitoEstudar === 'sim' && (
           <div style={{ marginTop: 12 }}>
             <label>
-              Tempo por dia (ex.: 30min, 1h, 2h):
+              Tempo por dia (ex.: 1h, 2h):
               <input
-                type="text"
+                type="number"
+                min="1"
+                max="24"
                 value={tempoEstudo}
                 onChange={(e) => setTempoEstudo(e.target.value)}
-                placeholder="Ex.: 1h"
+                placeholder="Ex: 1h"
                 style={{ marginLeft: 8 }}
               />
             </label>

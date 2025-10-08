@@ -4,7 +4,7 @@
   font-weight: 400;
   color-scheme: light;
   color: #1B245E; /* texto padrão sobre fundo branco */
-  background-color: #ffffff;
+  background-color: #f2f2f2; /* cinza fora da tela */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -27,7 +27,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   color: #1B245E; /* texto padrão */
-  background-color: #ffffff;
+  background-color: #f2f2f2; /* cinza fora da tela */
 }
 
 .app-shell {
@@ -36,11 +36,30 @@ body {
   margin: 0 auto;
   padding: 20px 16px;
   box-sizing: border-box;
+  position: relative;
+  background-color: #ffffff; /* fundo branco dentro da tela */
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  font-size: 1.06rem; /* leve aumento de fonte em todas as telas */
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.corner-logo {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.corner-logo--lg {
+  width: 64px;
+  height: 64px;
 }
 
 button {

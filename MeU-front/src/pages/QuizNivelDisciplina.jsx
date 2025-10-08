@@ -10,6 +10,23 @@ const NivelamentoDisciplina = () => {
   const enviarNivelamento = async () => {
     if (!nivel) return alert('Selecione um nível antes de prosseguir.');
 
+    const normalizar = (texto) =>
+      (texto || '')
+        .normalize('NFD')
+        .replace(/\p{Diacritic}+/gu, '')
+        .toLowerCase();
+
+    const navegarPorNivel = () => {
+      const disc = normalizar(disciplina);
+      if (disc === 'fisica') {
+        // Mapear níveis A/B/C para alto/médio/baixo
+        if (nivel === 'a') return navigate('/fisica/alto');
+        if (nivel === 'b') return navigate('/fisica/medio');
+        if (nivel === 'c') return navigate('/fisica/baixo');
+      }
+      return navigate('/disciplinas');
+    };
+
     try {
       await fetch('http://localhost:3000/api/quiz-nivel', {
         method: 'POST',
@@ -19,11 +36,11 @@ const NivelamentoDisciplina = () => {
           nivelConhecimento: nivel,
         }),
       });
-
-      // Redireciona para a próxima etapa ou dashboard
-      navigate('/dashboard');
     } catch (error) {
       console.error('Erro ao enviar nível:', error);
+    } finally {
+      // Garante a navegação mesmo se o backend estiver offline
+      navegarPorNivel();
     }
   };
 
@@ -33,30 +50,28 @@ const NivelamentoDisciplina = () => {
 
   return (
     <div className="nivelamento-container">
-      <button className="btn-voltar" onClick={() => navigate('/disciplinas')} aria-label="Voltar">
-        ← Voltar
-      </button>
+      {/* botão voltar removido */}
       <h1>{disciplina.toUpperCase()}</h1>
       <p>Qual é o seu nível de conhecimento nessa disciplina?</p>
 
       <div className="botoes-nivel">
         <button
-          className={`botao-nivel ${nivel === 'alto' ? 'ativo' : ''}`}
-          onClick={() => setNivel('alto')}
+          className={`botao-nivel ${nivel === 'a' ? 'ativo' : ''}`}
+          onClick={() => setNivel('a')}
         >
-          Alto
+          Nível A
         </button>
         <button
-          className={`botao-nivel ${nivel === 'medio' ? 'ativo' : ''}`}
-          onClick={() => setNivel('medio')}
+          className={`botao-nivel ${nivel === 'b' ? 'ativo' : ''}`}
+          onClick={() => setNivel('b')}
         >
-          Médio
+          Nível B
         </button>
         <button
-          className={`botao-nivel ${nivel === 'baixo' ? 'ativo' : ''}`}
-          onClick={() => setNivel('baixo')}
+          className={`botao-nivel ${nivel === 'c' ? 'ativo' : ''}`}
+          onClick={() => setNivel('c')}
         >
-          Baixo
+          Nível C
         </button>
       </div>
 
