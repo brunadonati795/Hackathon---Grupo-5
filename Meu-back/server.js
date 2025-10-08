@@ -1,28 +1,22 @@
-require('dotenv').config();
 const express = require('express');
-const app = express();
-const quizController = require('./controllers/quizController');
+const cors = require('cors');
+require('dotenv').config();
 
+const app = express();
+app.use(cors());
 app.use(express.json());
 
-app.post('/quiz/metodo', quizController.quizMetodo);
-app.post('/quiz/nivel', quizController.quizNivel);
+// Importa as rotas
+const alunoRoutes = require('./routes/alunoRoutes');
+const metodoRoutes = require('./routes/metodoRoutes');
+const disciplinaRoutes = require('./routes/disciplinaRoutes');
+const quizRoutes = require('./routes/quizRoutes');
 
-// Rota de teste para consultar o banco
-app.get('/usuarios', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM usuarios');
-    res.json(result.rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+app.use('/api/alunos', alunoRoutes);
+app.use('/api/metodos', metodoRoutes);
+app.use('/api/disciplinas', disciplinaRoutes);
+app.use('/api/quiz', quizRoutes);
 
-app.get('/', (req, res) => {
-  res.send('API funcionando!');
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Inicia o servidor
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

@@ -1,40 +1,34 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+const pool = require('../db');
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
-});
-
-module.exports = pool;
-
-exports.quizMetodo = async (req, res) => {
-  const { nome, resultado } = req.body;
+// Quiz de método (salva o método escolhido pelo aluno)
+exports.salvarMetodoAluno = async (req, res) => {
+  const { id_aluno, id_metodo } = req.body;
   try {
     await pool.query(
-      'INSERT INTO usuarios (nome, metodo_aprendizado) VALUES ($1, $2)',
-      [nome, resultado]
+      'INSERT INTO MetodosAlunos (id_aluno, id_metodo) VALUES ($1, $2)',
+      [id_aluno, id_metodo]
     );
-    res.status(201).send('Resultado do método salvo!');
+    res.status(201).send('Método registrado com sucesso!');
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erro ao salvar resultado');
+    res.status(500).send('Erro ao registrar método');
   }
 };
 
-exports.quizNivel = async (req, res) => {
-  const { nome, nivel } = req.body;
+// Quiz de nível (salva o nível do aluno em uma disciplina)
+exports.salvarNivelAluno = async (req, res) => {
+  const { id_aluno, id_disciplina, conhecimento_aluno } = req.body;
   try {
     await pool.query(
-      'UPDATE usuarios SET nivel = $1 WHERE nome = $2',
-      [nivel, nome]
+      `INSERT INTO DisciplinasAlunos (id_aluno, id_disciplina, conhecimento_aluno)
+       VALUES ($1, $2, $3)
+       ON CONFLICT (id_disciplina, id_aluno)
+       DO UPDATE SET conhecimento_aluno = EXCLUDED.conhecimento_aluno`,
+      [id_aluno, id_disciplina, conhecimento_aluno]
     );
-    res.send('Nível atualizado!');
+    res.status(201).send('Nível de conhecimento salvo com sucesso!');
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erro ao atualizar nível');
+    res.status(500).send('Erro ao salvar nível');
   }
 };
