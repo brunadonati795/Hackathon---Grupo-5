@@ -28,11 +28,14 @@ const NivelamentoDisciplina = () => {
   };
 
   const sair = () => {
-    navigate('/');
+    navigate('/disciplinas');
   };
 
   return (
     <div className="nivelamento-container">
+      <button className="btn-voltar" onClick={() => navigate('/disciplinas')} aria-label="Voltar">
+        ← Voltar
+      </button>
       <h1>{disciplina.toUpperCase()}</h1>
       <p>Qual é o seu nível de conhecimento nessa disciplina?</p>
 

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import '../App.css';
 
 const disciplinas = [
@@ -14,9 +15,18 @@ const disciplinas = [
 
 const SelecaoDisciplina = () => {
   const navigate = useNavigate();
+  const [selecionada, setSelecionada] = useState(null);
 
   const irParaQuizNivel = (disciplina) => {
     navigate(`/quiz-nivel/${disciplina.toLowerCase()}`);
+  };
+
+  const onCardClick = (nome) => {
+    setSelecionada(nome);
+  };
+
+  const onCardDoubleClick = (nome) => {
+    irParaQuizNivel(nome);
   };
 
   return (
@@ -26,14 +36,11 @@ const SelecaoDisciplina = () => {
         {disciplinas.map((disciplina, index) => (
           <div
             key={index}
-            className="card-disciplina"
-            onClick={() => irParaQuizNivel(disciplina.nome)}
+            className={`card-disciplina ${selecionada === disciplina.nome ? 'selecionada' : ''}`}
+            onClick={() => onCardClick(disciplina.nome)}
+            onDoubleClick={() => onCardDoubleClick(disciplina.nome)}
           >
-            <img
-              src={`/imagens/${disciplina.imagem}`}
-              alt={`Ícone ${disciplina.nome}`}
-              className="icone-disciplina"
-            />
+            <div className="icone-temp" aria-hidden="true">📘</div>
             <p>{disciplina.nome}</p>
           </div>
         ))}

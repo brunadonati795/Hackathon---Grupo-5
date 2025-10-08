@@ -1,0 +1,15 @@
+{
+  "name": "reggaethon-root",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [],
+  "scripts": {
+    "start": "npm --prefix MeU-front run dev",
+    "dev": "npm --prefix MeU-front run dev",
+    "build": "npm --prefix MeU-front run build",
+    "preview": "npm --prefix MeU-front run preview",
+    "lint": "npm --prefix MeU-front run lint"
+  }
+}
+
+

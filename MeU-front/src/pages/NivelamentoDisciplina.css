@@ -1,0 +1,57 @@
+.nivelamento-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.btn-voltar {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: #1B245E; /* voltar/sair */
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.botoes-nivel {
+  display: flex;
+  gap: 12px;
+}
+
+.botao-nivel {
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botao-nivel.ativo {
+  background: #1e90ff;
+  color: #fff;
+  border-color: #1e90ff;
+}
+
+.botao-prosseguir,
+.botao-sair {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botao-prosseguir {
+  background: #2E447D; /* botões */
+  color: #fff;
+}
+
+.botao-sair {
+  background: none;
+  color: #1B245E; /* voltar/sair */
+}
+
+

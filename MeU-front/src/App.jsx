@@ -10,7 +10,9 @@ function App() {
       <Routes>
         <Route path="/" element={<PaginaInicial />} />
         <Route path="/quiz-estilo" element={<QuizEstiloAprendizagem />} />
-        <Route path="/quiz-nivel" element={<QuizNivelDisciplina />} />
+        <Route path="/disciplinas" element={<SelecaoDisciplina />} />
+        <Route path="/quiz-nivel/:disciplina" element={<QuizNivelDisciplina />} />
+        {/* aliases/legacy paths */}
         <Route path="/selecao-disciplina" element={<SelecaoDisciplina />} />
       </Routes>
     </Router>

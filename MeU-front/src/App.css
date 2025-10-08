@@ -23,29 +23,31 @@
   font-size: 2.5rem;
   font-weight: bold;
   margin: 10px 0 5px;
+  color: #1B245E; /* títulos */
 }
 
 .subtitulo {
   font-size: 1.2rem;
-  color: #555;
+  color: #1B245E; /* texto fora de caixas */
 }
 
 .texto-intro h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: #1B245E;
 }
 
 .texto-intro p {
   font-size: 1rem;
-  color: #666;
+  color: #1B245E;
 }
 
 .botao-perguntas {
   margin-top: 40px;
   padding: 15px 30px;
   font-size: 1.2rem;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #2E447D; /* botões */
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -53,7 +55,7 @@
 }
 
 .botao-perguntas:hover {
-  background-color: #45a049;
+  background-color: #283b6c;
 }
 
 /* QUIZ ESTILO APRENDIZAGEM */
@@ -63,16 +65,19 @@
   padding: 40px 20px;
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
 }
 
 .quiz-container h1 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #1B245E;
 }
 
 .quiz-container p {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  color: #1B245E;
 }
 
 .opcoes {
@@ -91,15 +96,15 @@
 .botao-prosseguir {
   padding: 12px 24px;
   font-size: 1rem;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #2E447D; /* botões */
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 
 .botao-prosseguir:hover {
-  background-color: #45a049;
+  background-color: #283b6c;
 }
 
 /* DISCIPLINAS */
@@ -107,6 +112,7 @@
   padding: 40px 20px;
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
 }
 
 .grade-cards {
@@ -117,7 +123,7 @@
 }
 
 .card-disciplina {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 20px;
   cursor: pointer;
@@ -125,10 +131,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid #2E447D;
+  color: #2E447D;
 }
 
 .card-disciplina:hover {
   transform: scale(1.05);
+}
+
+.card-disciplina.selecionada {
+  background-color: #554BB3; /* caixa selecionada */
+  color: #ffffff;
 }
 
 .icone-disciplina {
@@ -137,21 +150,31 @@
   margin-bottom: 10px;
 }
 
+.icone-temp {
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 10px;
+  color: #2E447D;
+}
+
 /* QUIZZ NIVELAMENTO DISCIPLINAS */
 .nivelamento-container {
   padding: 40px 20px;
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
 }
 
 .nivelamento-container h1 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #1B245E;
 }
 
 .nivelamento-container p {
   font-size: 1.2rem;
   margin-bottom: 30px;
+  color: #1B245E;
 }
 
 .botoes-nivel {
@@ -163,9 +186,9 @@
 
 .botao-nivel {
   padding: 12px 24px;
-  border: 2px solid #4CAF50;
-  background-color: white;
-  color: #4CAF50;
+  border: 2px solid #2E447D;
+  background-color: #ffffff;
+  color: #2E447D;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
@@ -173,15 +196,15 @@
 }
 
 .botao-nivel.ativo {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #2E447D;
+  color: #ffffff;
 }
 
 .botao-prosseguir {
   padding: 12px 24px;
   font-size: 1rem;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #2E447D;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -191,7 +214,7 @@
 .botao-sair {
   background: none;
   border: none;
-  color: #888;
+  color: #1B245E; /* voltar/sair */
   font-size: 0.9rem;
   cursor: pointer;
   text-decoration: underline;
