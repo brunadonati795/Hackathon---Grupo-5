@@ -59,19 +59,19 @@ const NivelamentoDisciplina = () => {
           className={`botao-nivel ${nivel === 'a' ? 'ativo' : ''}`}
           onClick={() => setNivel('a')}
         >
-          Nível A
+          Avançado
         </button>
         <button
           className={`botao-nivel ${nivel === 'b' ? 'ativo' : ''}`}
           onClick={() => setNivel('b')}
         >
-          Nível B
+         Médio
         </button>
         <button
           className={`botao-nivel ${nivel === 'c' ? 'ativo' : ''}`}
           onClick={() => setNivel('c')}
         >
-          Nível C
+          Baixo
         </button>
       </div>
 

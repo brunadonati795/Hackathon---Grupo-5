@@ -13,8 +13,14 @@ const PaginaInicial = () => {
     <div className="pagina-inicial">
       <div className="logo-area">
         <img src={brand} alt="Logo" className="logo logo--hero"/>
-        <h1>MeU</h1>
-        <p className="subtitulo">Meu Ensino Único</p>
+        <div className="title-section">
+          <h1>MeU</h1>
+          <p className="subtitulo">Meu Ensino Único</p>
+        </div>
+        <div className="description-section">
+          <p className="description-text">Aprenda da sua forma, no seu tempo</p>
+          <p className="description-subtext">Responda às perguntas e personalize sua experiência!</p>
+        </div>
       </div>
       <button className="botao-perguntas" onClick={iniciarQuiz}>PERGUNTAS</button>
     </div>

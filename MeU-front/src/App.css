@@ -12,6 +12,25 @@
 
 .logo-area {
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .logo {
@@ -34,6 +53,20 @@
 .subtitulo {
   font-size: 1.2rem;
   color: #1B245E; /* texto fora de caixas */
+  margin: 0;
+}
+
+.description-text {
+  font-size: 1.1rem;
+  color: #2E447D;
+  font-weight: 500;
+  margin: 0;
+}
+
+.description-subtext {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
 }
 
 .texto-intro h2 {
@@ -179,8 +212,8 @@
 
 /* imagens menores dentro dos cards de disciplinas */
 .icone-temp img {
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
   display: block;
 }
@@ -245,6 +278,645 @@
   color: #1B245E; /* voltar/sair */
   font-size: 0.9rem;
   cursor: pointer;
+  text-decoration: underline;
+}
+
+/* FÍSICA PAGES - CARD LAYOUT */
+.fisica-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+/* EXPERIMENT STYLES */
+.experiment-section {
+  margin: 20px 0;
+}
+
+.experiment-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.experiment-card h5 {
+  color: #2E447D;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #2E447D;
+  padding-bottom: 8px;
+}
+
+.experiment-materials,
+.experiment-procedure,
+.experiment-observation {
+  margin: 15px 0;
+}
+
+.experiment-materials h6,
+.experiment-procedure h6,
+.experiment-observation h6 {
+  color: #2E447D;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.experiment-materials ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.experiment-materials li {
+  margin: 5px 0;
+  color: #555;
+}
+
+.experiment-procedure ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+}
+
+.experiment-procedure li {
+  margin: 5px 0;
+  color: #555;
+}
+
+.experiment-observation p {
+  color: #555;
+  font-style: italic;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid #28a745;
+}
+
+.experiment-explanation {
+  background: #f8f9fa;
+  border: 2px solid #6c757d;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.experiment-explanation h6 {
+  color: #2E447D;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.experiment-explanation p {
+  color: #555;
+  margin: 0;
+}
+
+/* MIND MAP STYLES */
+.mindmap-section {
+  margin: 20px 0;
+}
+
+.mindmap-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mindmap-title {
+  color: #2E447D;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #28a745;
+  padding-bottom: 10px;
+}
+
+.mindmap-concepts,
+.mindmap-scales,
+.mindmap-conversion,
+.mindmap-variation {
+  margin: 15px 0;
+  padding: 15px;
+  border: 2px solid #6c757d;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.mindmap-concepts h6,
+.mindmap-scales h6,
+.mindmap-conversion h6,
+.mindmap-variation h6 {
+  color: #2E447D;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-decoration-color: #28a745;
+}
+
+.concept-item,
+.scale-item {
+  margin: 8px 0;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  border-left: 4px solid #28a745;
+}
+
+.concept-term,
+.scale-name {
+  color: #2E447D;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.concept-definition,
+.scale-range {
+  color: #555;
+}
+
+.mindmap-conversion p,
+.mindmap-variation p {
+  color: #555;
+  font-family: 'Courier New', monospace;
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  margin: 0;
+}
+
+.fisica-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2E447D;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  min-height: 80px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.fisica-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex: 1;
+  text-align: center;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.fisica-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Torna a logo branca */
+}
+
+.logout-button {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.topic-selector {
+  margin-bottom: 24px;
+}
+
+.topic-option {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 2px solid #2E447D;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.topic-option:hover {
+  background-color: #e9ecef;
+}
+
+.topic-option input[type="radio"] {
+  margin-right: 12px;
+  transform: scale(1.2);
+}
+
+.topic-option label {
+  font-weight: bold;
+  color: #2E447D;
+  cursor: pointer;
+  margin: 0;
+}
+
+.modules-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.module-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.module-header.clickable {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.module-header.clickable:hover {
+  background-color: #f8f9fa;
+}
+
+.module-icon {
+  color: #2E447D;
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.module-header h3 {
+  margin: 0;
+  color: #2E447D;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.video-container {
+  margin-bottom: 20px;
+}
+
+.video-placeholder {
+  background-color: #2E447D;
+  border-radius: 8px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.video-placeholder:hover {
+  background-color: #1e3a5f;
+}
+
+.play-button {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.summary-section, .questions-section {
+  margin-bottom: 20px;
+}
+
+.summary-section h4, .questions-section h4 {
+  margin: 0 0 8px 0;
+  color: #2E447D;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.text-box {
+  border-radius: 6px;
+  padding: 12px;
+  min-height: 60px;
+}
+
+.text-box.green-border {
+  border: 2px solid #28a745;
+  background-color: #f8fff9;
+}
+
+.text-box.blue-border {
+  border: 2px solid #007bff;
+  background-color: #f8f9ff;
+}
+
+.text-box p {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.text-box textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+}
+
+.module-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.module-footer p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.time-question {
+  color: #999 !important;
+  font-size: 0.8rem !important;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  color: #2E447D;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.expand-button:hover {
+  color: #1e3a5f;
+}
+
+.expanded-content {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.expanded-content h4 {
+  margin: 0 0 12px 0;
+  color: #2E447D;
+  font-size: 1rem;
+}
+
+.expanded-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.expanded-content li {
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.time-question-button {
+  background: none;
+  border: none;
+  color: #2E447D;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.time-question-button:hover {
+  color: #1e3a5f;
+}
+
+.questions-content {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.questions-content h4 {
+  margin: 0 0 12px 0;
+  color: #2E447D;
+  font-size: 1rem;
+}
+
+.questions-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.questions-content li {
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.question-item {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.question-item h5 {
+  margin: 0 0 12px 0;
+  color: #2E447D;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.option-label:hover {
+  background-color: #e9ecef;
+}
+
+.option-label input[type="radio"] {
+  margin: 0;
+  transform: scale(1.1);
+  accent-color: #2E447D;
+}
+
+.option-label span {
+  flex: 1;
+  color: #333;
+  line-height: 1.4;
+}
+
+.option-label.correct {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.option-label.incorrect {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.result-icon {
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.option-label.correct .result-icon {
+  color: #28a745;
+}
+
+.option-label.incorrect .result-icon {
+  color: #dc3545;
+}
+
+/* AUTHENTICATION STYLES */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-card h2 {
+  color: #2E447D;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #2E447D;
+}
+
+.auth-button {
+  background-color: #2E447D;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.auth-button:hover:not(:disabled) {
+  background-color: #1e3a5f;
+}
+
+.auth-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.auth-link {
+  margin-top: 20px;
+  color: #666;
+}
+
+.auth-link a {
+  color: #2E447D;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-link a:hover {
   text-decoration: underline;
 }
 
