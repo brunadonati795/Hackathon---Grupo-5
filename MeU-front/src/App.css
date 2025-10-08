@@ -1,42 +1,199 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.pagina-inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
+  padding: 20px;
+}
+
+.logo-area {
+  margin-bottom: 30px;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  width: 100px;
+  height: auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.subtitulo {
+  font-size: 1.2rem;
+  color: #555;
 }
 
-.card {
-  padding: 2em;
+.texto-intro h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
-.read-the-docs {
+.texto-intro p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.botao-perguntas {
+  margin-top: 40px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao-perguntas:hover {
+  background-color: #45a049;
+}
+
+/* QUIZ ESTILO APRENDIZAGEM */
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.quiz-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.quiz-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.opcoes label {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.botao-prosseguir {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botao-prosseguir:hover {
+  background-color: #45a049;
+}
+
+/* DISCIPLINAS */
+.selecao-container {
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.grade-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card-disciplina {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-disciplina:hover {
+  transform: scale(1.05);
+}
+
+.icone-disciplina {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* QUIZZ NIVELAMENTO DISCIPLINAS */
+.nivelamento-container {
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.nivelamento-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.nivelamento-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.botoes-nivel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.botao-nivel {
+  padding: 12px 24px;
+  border: 2px solid #4CAF50;
+  background-color: white;
+  color: #4CAF50;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao-nivel.ativo {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.botao-prosseguir {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.botao-sair {
+  background: none;
+  border: none;
   color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
 }
+
