@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../App.css';
 
 // imagens das disciplinas
@@ -37,6 +37,15 @@ const imagensPorDisciplina = {
 const SelecaoDisciplina = () => {
   const navigate = useNavigate();
   const [selecionada, setSelecionada] = useState(null);
+  const [userPreferences, setUserPreferences] = useState(null);
+
+  useEffect(() => {
+    // Carregar preferências do usuário do localStorage
+    const preferences = localStorage.getItem('userPreferences');
+    if (preferences) {
+      setUserPreferences(JSON.parse(preferences));
+    }
+  }, []);
 
   const irParaQuizNivel = (disciplina) => {
     navigate(`/quiz-nivel/${disciplina.toLowerCase()}`);
@@ -50,9 +59,42 @@ const SelecaoDisciplina = () => {
     irParaQuizNivel(nome);
   };
 
+  const getMetodologiaText = (metodologias) => {
+    const map = {
+      'audio-visual': 'Vídeo aulas',
+      'visual': 'Conteúdo visual',
+      'escrita-leitura': 'Textos e resumos',
+      'questoes': 'Questões',
+      'explicando': 'Explicações',
+      'pratica': 'Experimentos práticos'
+    };
+    return metodologias.map(m => map[m] || m).join(', ');
+  };
+
   return (
     <div className="selecao-container">
       <h1>Escolha uma disciplina</h1>
+      
+      {/* Mostrar preferências do usuário */}
+      {userPreferences && (
+        <div className="user-preferences-info" style={{
+          backgroundColor: '#f0f8ff',
+          padding: '15px',
+          borderRadius: '8px',
+          marginBottom: '20px',
+          border: '1px solid #e0e0e0'
+        }}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#333' }}>Suas preferências de estudo:</h3>
+          <p style={{ margin: '0', color: '#666' }}>
+            <strong>Metodologias:</strong> {getMetodologiaText(userPreferences.metodologias)}
+          </p>
+          <p style={{ margin: '5px 0 0 0', color: '#666' }}>
+            <strong>Hábito de estudo:</strong> {userPreferences.habitoEstudo === 'sim' ? 'Sim' : 'Não'}
+            {userPreferences.tempoEstudo && ` (${userPreferences.tempoEstudo}h por dia)`}
+          </p>
+        </div>
+      )}
+      
       <div className="grade-cards">
         {disciplinas.map((disciplina, index) => (
           <div

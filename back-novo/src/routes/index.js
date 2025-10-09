@@ -7,6 +7,7 @@ const metodosRoutes = require('./metodos');
 const disciplinasRoutes = require('./disciplinas');
 const materiaisRoutes = require('./materiais');
 const questoesRoutes = require('./questoes');
+const respostasRoutes = require('./respostas');
 
 // Configurar rotas
 router.use('/alunos', alunosRoutes);
@@ -14,6 +15,7 @@ router.use('/metodos', metodosRoutes);
 router.use('/disciplinas', disciplinasRoutes);
 router.use('/materiais', materiaisRoutes);
 router.use('/questoes', questoesRoutes);
+router.use('/respostas', respostasRoutes);
 
 // Rota de health check
 router.get('/health', (req, res) => {

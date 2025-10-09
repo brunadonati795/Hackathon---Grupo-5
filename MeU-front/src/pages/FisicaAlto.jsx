@@ -1,15 +1,31 @@
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useUserPreferences } from '../hooks/useUserPreferences';
+import { useRespostasTexto } from '../hooks/useRespostasTexto';
 
 const FisicaAlto = () => {
   const navigate = useNavigate();
   const [expandedCards, setExpandedCards] = useState({});
   const [showQuestions, setShowQuestions] = useState({});
   const [answers, setAnswers] = useState({});
+  const [textAnswers, setTextAnswers] = useState({});
+  const { 
+    userPreferences, 
+    shouldShowVideo, 
+    shouldShowExperiment, 
+    shouldShowMindMap, 
+    shouldShowSummary, 
+    shouldShowQuestions, 
+    shouldShowExplanation 
+  } = useUserPreferences();
+  
+  const { salvarResposta, loading: savingAnswer } = useRespostasTexto();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userPreferences');
     navigate('/login');
   };
 
@@ -230,6 +246,37 @@ const FisicaAlto = () => {
     return question && userAnswer === question.correct;
   };
 
+  // Função para salvar resposta de texto
+  const handleSaveTextAnswer = async (moduleId, answerText) => {
+    if (!answerText.trim()) {
+      alert('Por favor, escreva uma resposta antes de salvar.');
+      return;
+    }
+
+    try {
+      await salvarResposta('Física', moduleId, answerText);
+      
+      // Atualizar estado local
+      setTextAnswers(prev => ({
+        ...prev,
+        [moduleId]: answerText
+      }));
+      
+      alert('Resposta salva com sucesso!');
+    } catch (error) {
+      alert('Erro ao salvar resposta. Tente novamente.');
+      console.error('Erro ao salvar resposta:', error);
+    }
+  };
+
+  // Função para atualizar resposta de texto
+  const handleTextAnswerChange = (moduleId, value) => {
+    setTextAnswers(prev => ({
+      ...prev,
+      [moduleId]: value
+    }));
+  };
+
   return (
     <div className="fisica-container">
       {/* Header */}
@@ -258,17 +305,20 @@ const FisicaAlto = () => {
             {/* Expanded Content */}
             {expandedCards[module.id] && (
               <>
-                {/* Video Area */}
-                <div className="video-container">
-                  <div className="video-placeholder">
-                    <div className="play-button">▶</div>
+                {/* Video Area - só mostra se usuário escolheu áudio-visual ou visual */}
+                {shouldShowVideo() && (
+                  <div className="video-container">
+                    <div className="video-placeholder">
+                      <div className="play-button">▶</div>
+                      <p>Vídeo aula sobre {module.title}</p>
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Experiment Section */}
-                {module.experiment && (
+                {/* Experiment Section - só mostra se usuário escolheu prática */}
+                {shouldShowExperiment() && module.experiment && (
                   <div className="experiment-section">
-                    <h4>Experimento</h4>
+                    <h4>Experimento Prático</h4>
                     <div className="experiment-card">
                       <h5>{module.experiment.title}</h5>
                       
@@ -303,8 +353,8 @@ const FisicaAlto = () => {
                   </div>
                 )}
 
-                {/* Mind Map Section */}
-                {module.mindMap && (
+                {/* Mind Map Section - só mostra se usuário escolheu visual ou escrita-leitura */}
+                {shouldShowMindMap() && module.mindMap && (
                   <div className="mindmap-section">
                     <h4>Resumo Visual</h4>
                     <div className="mindmap-card">
@@ -343,73 +393,102 @@ const FisicaAlto = () => {
                   </div>
                 )}
 
-                {/* Summary Area */}
-                <div className="summary-section">
-                  <h4>Resumo da conversa</h4>
-                  <div className="text-box green-border">
-                    <p>{module.summary}</p>
+                {/* Summary Area - só mostra se usuário escolheu escrita-leitura */}
+                {shouldShowSummary() && (
+                  <div className="summary-section">
+                    <h4>Resumo da conversa</h4>
+                    <div className="text-box green-border">
+                      <p>{module.summary}</p>
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Questions Area */}
-                <div className="questions-section">
-                  <h4>Explique aqui</h4>
-                  <div className="text-box blue-border">
-                    <textarea 
-                      placeholder="Escreva suas respostas aqui..."
-                      rows="4"
-                    ></textarea>
+                {/* Questions Area - só mostra se usuário escolheu questões */}
+                {shouldShowQuestions() && (
+                  <div className="questions-section">
+                    <h4>Questões de Múltipla Escolha</h4>
+                    <div className="text-box blue-border">
+                      {module.questions.map((question) => (
+                        <div key={question.id} className="question-item">
+                          <h5>{question.question}</h5>
+                          <div className="options-container">
+                            {question.options.map((option, index) => {
+                              const userAnswer = answers[`${module.id}-${question.id}`];
+                              const isCorrect = checkAnswer(module.id, question.id, index);
+                              const isSelected = userAnswer === index;
+                              const showResult = userAnswer !== undefined;
+                              
+                              return (
+                                <label 
+                                  key={index} 
+                                  className={`option-label ${showResult ? (isCorrect ? 'correct' : (isSelected ? 'incorrect' : '')) : ''}`}
+                                >
+                                  <input
+                                    type="radio"
+                                    name={`${module.id}-${question.id}`}
+                                    value={index}
+                                    checked={isSelected}
+                                    onChange={() => handleAnswer(module.id, question.id, index)}
+                                  />
+                                  <span>{option}</span>
+                                  {showResult && isCorrect && <span className="result-icon">✓</span>}
+                                  {showResult && isSelected && !isCorrect && <span className="result-icon">✗</span>}
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {/* Explanation Area - só mostra se usuário escolheu explicando */}
+                {shouldShowExplanation() && (
+                  <div className="explanation-section">
+                    <h4>Explique aqui</h4>
+                    <div className="text-box blue-border">
+                      <textarea 
+                        placeholder="Escreva suas respostas aqui..."
+                        rows="4"
+                        value={textAnswers[module.id] || ''}
+                        onChange={(e) => handleTextAnswerChange(module.id, e.target.value)}
+                      ></textarea>
+                      <div className="explanation-actions" style={{ marginTop: '10px' }}>
+                        <button 
+                          className="save-answer-button"
+                          onClick={() => handleSaveTextAnswer(module.id, textAnswers[module.id] || '')}
+                          disabled={savingAnswer}
+                          style={{
+                            backgroundColor: '#28a745',
+                            color: 'white',
+                            border: 'none',
+                            padding: '8px 16px',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '14px'
+                          }}
+                        >
+                          {savingAnswer ? 'Salvando...' : 'Salvar Resposta'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Additional Info */}
                 <div className="module-footer">
                   <p>Tempo Estimado: {module.estimatedTime}</p>
-                  <button 
-                    className="time-question-button"
-                    onClick={() => toggleQuestions(module.id)}
-                  >
-                    Muito tempo?
-                  </button>
+                  {/* Só mostra o botão "Muito tempo?" se o usuário NÃO escolheu questões */}
+                  {!shouldShowQuestions() && (
+                    <button 
+                      className="time-question-button"
+                      onClick={() => toggleQuestions(module.id)}
+                    >
+                      Muito tempo?
+                    </button>
+                  )}
                 </div>
-
-                {/* Questions Content */}
-                {showQuestions[module.id] && (
-                  <div className="questions-content">
-                    <h4>Questões de múltipla escolha:</h4>
-                    {module.questions.map((question) => (
-                      <div key={question.id} className="question-item">
-                        <h5>{question.question}</h5>
-                        <div className="options-container">
-                          {question.options.map((option, index) => {
-                            const userAnswer = answers[`${module.id}-${question.id}`];
-                            const isCorrect = checkAnswer(module.id, question.id, index);
-                            const isSelected = userAnswer === index;
-                            const showResult = userAnswer !== undefined;
-                            
-                            return (
-                              <label 
-                                key={index} 
-                                className={`option-label ${showResult ? (isCorrect ? 'correct' : (isSelected ? 'incorrect' : '')) : ''}`}
-                              >
-                                <input
-                                  type="radio"
-                                  name={`${module.id}-${question.id}`}
-                                  value={index}
-                                  checked={isSelected}
-                                  onChange={() => handleAnswer(module.id, question.id, index)}
-                                />
-                                <span>{option}</span>
-                                {showResult && isCorrect && <span className="result-icon">✓</span>}
-                                {showResult && isSelected && !isCorrect && <span className="result-icon">✗</span>}
-                              </label>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </>
             )}
           </div>

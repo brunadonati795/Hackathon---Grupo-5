@@ -6,7 +6,19 @@ const PaginaInicial = () => {
   const navigate = useNavigate();
 
   const iniciarQuiz = () => {
-    navigate('/quiz-estilo');
+    // Verificar se o usuário está logado
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Se não estiver logado, redirecionar para login
+      navigate('/login');
+    } else {
+      // Se estiver logado, ir para o quiz
+      navigate('/quiz-estilo');
+    }
+  };
+
+  const irParaLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -22,7 +34,10 @@ const PaginaInicial = () => {
           <p className="description-subtext">Responda às perguntas e personalize sua experiência!</p>
         </div>
       </div>
-      <button className="botao-perguntas" onClick={iniciarQuiz}>PERGUNTAS</button>
+      <div className="button-container">
+        <button className="botao-perguntas" onClick={iniciarQuiz}>PERGUNTAS</button>
+        <button className="botao-login" onClick={irParaLogin}>LOGIN</button>
+      </div>
     </div>
   );
 };

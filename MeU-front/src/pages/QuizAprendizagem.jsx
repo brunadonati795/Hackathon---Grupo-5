@@ -15,7 +15,25 @@ const QuizEstiloAprendizagem = () => {
   };
 
   const enviarResposta = async () => {
-    if (estilosSelecionados.length === 0) return alert('Por favor, selecione ao menos uma opção.');
+    if (estilosSelecionados.length === 0) {
+      alert('Por favor, selecione ao menos uma metodologia de estudo.');
+      return;
+    }
+    
+    if (!temHabitoEstudar) {
+      alert('Por favor, responda se você tem o costume de estudar.');
+      return;
+    }
+
+    // Salvar as preferências do usuário no localStorage
+    const userPreferences = {
+      metodologias: estilosSelecionados,
+      habitoEstudo: temHabitoEstudar,
+      tempoEstudo: tempoEstudo,
+      timestamp: new Date().toISOString()
+    };
+    
+    localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
 
     try {
       await fetch('http://localhost:3000/api/quiz-estilo', {
@@ -37,7 +55,10 @@ const QuizEstiloAprendizagem = () => {
 
   return (
     <div className="quiz-container">
-      <h1>Questionário - Forma de Aprendizagem</h1>
+      <div className="quiz-header">
+        <button className="back-button" onClick={() => navigate('/')}>← Voltar</button>
+        <h1>Questionário - Forma de Aprendizagem</h1>
+      </div>
       <p>Quais métodos você gosta de utilizar para estudar?</p>
 
       <div className="opcoes">
@@ -104,7 +125,7 @@ const QuizEstiloAprendizagem = () => {
       </div>
 
       <div className="opcoes" style={{ marginTop: 24 }}>
-        <p>Você tem o costume de estudar? Se sim, quanto tempo?</p>
+        <p><strong>Você tem o costume de estudar?</strong> (Selecione uma opção)</p>
         <label>
           <input
             type="radio"
